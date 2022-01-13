@@ -8,14 +8,17 @@
     <title>Domů - EduForum</title>
 </head>
 <body>
-@if (session('succes'))
-    <div>
-        {{ session('succes') }}
-    </div>
-@endif
-<form action="{{route('logout')}}" method="POST">
+<h1>Vítej na Educhem fóru</h1>
+@if(Auth::check())
+    @if (session('succes'))
+        <div>
+            {{ session('succes') }}
+        </div>
+    @endif
+    <form action="{{route('logout')}}" method="POST">
     @csrf
     <button type="submit ">Odhlásit se</button>
+        @endif
 </form>
 </body>
 </html>
