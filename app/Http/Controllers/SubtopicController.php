@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\post;
+use App\Models\Subtopic;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class SubtopicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\Subtopic  $subtopic
      * @return \Illuminate\Http\Response
      */
-    public function show(post $post)
+    public function show(Subtopic $subtopic)
     {
         //
     }
@@ -52,10 +52,10 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\Subtopic  $subtopic
      * @return \Illuminate\Http\Response
      */
-    public function edit(post $post)
+    public function edit(Subtopic $subtopic)
     {
         //
     }
@@ -64,10 +64,10 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\Subtopic  $subtopic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, post $post)
+    public function update(Request $request, Subtopic $subtopic)
     {
         //
     }
@@ -75,10 +75,10 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\Subtopic  $subtopic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(post $post)
+    public function destroy(Subtopic $subtopic)
     {
         //
     }
