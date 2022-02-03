@@ -15,6 +15,9 @@ class CreateSubtopicsTable extends Migration
     {
         Schema::create('subtopics', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->text('description')->nullable();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

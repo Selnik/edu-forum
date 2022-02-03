@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
+    protected $fillable = [
+        'name',
+        'description',
+        'slug'
+    ];
     use HasFactory;
     public function subtopics()
     {

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
+use Str;
 class TopicController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+
+
     }
 
     /**
@@ -31,22 +33,34 @@ class TopicController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
-        //
+        //$user = Auth::user();
+        $this->validate($request, [
+            'name' => ['required', 'min:3', 'max:30', 'unique:topics'],
+            'description' => ['required', 'min:5', 'max:50'],
+
+            ]);
+        $topic = new Topic();
+        $topic->name = $request->input('name');
+        $topic->description = $request->input('description');
+        $topic->slug = Str::slug($request->input('name'));
+        $topic->save();
+        return redirect()->to('/');
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Topic  $topic
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show(Topic $topic)
     {
-        //
+        return view('topic.show');
     }
 
     /**
