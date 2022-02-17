@@ -21,6 +21,7 @@
     <button type="submit ">Odhlásit se</button>
     </form>
         @endif
+@if(Auth::check())
 <form action="{{ route('topic.store') }}" method="POST">
     @csrf
     <h1>Vytvořit téma</h1>
@@ -39,6 +40,8 @@
     <button type="submit">Vytvořit téma</button>
 
 </form>
+    @endif
 
 </body>
 </html>
+
