@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('home');
 });
+*/
+Route::get('/', [TopicController::class, 'index']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('topic', TopicController::class);

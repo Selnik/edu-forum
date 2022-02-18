@@ -9,7 +9,9 @@
 </head>
 <body>
 <h1>Vítej na Educhem fóru</h1>
-
+@if(!Auth::check())
+<a href="{{route('login')}}">Přihlásit se</a>
+@endif
     @if (session('succes'))
         <div>
             {{ session('succes') }}
@@ -41,7 +43,13 @@
 
 </form>
     @endif
-
+<ul>
+    @forelse($topics as $topic)
+        <li>{{$topic->name}}, {{$topic->description}}</li>
+    @empty
+        Prázdné
+    @endforelse
+</ul>
 </body>
 </html>
 

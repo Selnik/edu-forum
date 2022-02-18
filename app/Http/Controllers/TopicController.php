@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Topic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Str;
 class TopicController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response|View
      */
     public function index()
     {
-
+return view('home', ['topics' =>Topic::orderBy('id', 'desc')->get()]);
 
     }
 
@@ -56,7 +57,7 @@ class TopicController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Topic  $topic
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function show(Topic $topic)
     {
