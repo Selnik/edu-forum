@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Thread;
 use App\Models\Topic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-return view('home', ['topics' =>Topic::orderBy('id', 'desc')->get()]);
+return view('home', ['topics' =>Topic::orderBy('id', 'desc')->get(), 'threads' =>Thread::orderBy('id','desc')->get()]);
 
     }
 

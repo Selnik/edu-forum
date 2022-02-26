@@ -1,28 +1,5 @@
-<!doctype html>
-<html lang="cs-cz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Domů - EduForum</title>
-</head>
-<body>
+<x-app-layout>
 <h1>Vítej na Educhem fóru</h1>
-@if(!Auth::check())
-<a href="{{route('login')}}">Přihlásit se</a>
-@endif
-    @if (session('succes'))
-        <div>
-            {{ session('succes') }}
-        </div>
-    @endif
-@if(Auth::check())
-    <form action="{{route('logout')}}" method="POST">
-    @csrf
-    <button type="submit ">Odhlásit se</button>
-    </form>
-        @endif
 @if(Auth::check())
 <form action="{{ route('topic.store') }}" method="POST">
     @csrf
@@ -50,6 +27,30 @@
         Prázdné
     @endforelse
 </ul>
-</body>
-</html>
+    @if(Auth::check())
+        <form action="{{ route('thread.store') }}" method="POST">
+            @csrf
+            <h1>Vytvořit vlákno</h1>
+            @if ($errors->any())
+                <div>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <input type="text" name="name" id="name" value="{{old('name')}}" placeholder="Jméno vlákna">
+            <input type="text" name="text" id="text" value="{{old('description')}}" placeholder="Popis vlákna">
+            <button type="submit">Vytvořit vlákno</button>
+
+        </form>
+        @forelse($threads as $thread)
+            <li>{{$thread->name}}, {{$thread->text}}</li>
+        @empty
+            Prázdné
+        @endforelse
+    @endif
+</x-app-layout>
 
