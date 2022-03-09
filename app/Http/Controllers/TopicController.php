@@ -62,7 +62,7 @@ return view('home', ['topics' =>Topic::orderBy('id', 'desc')->get(), 'threads' =
      */
     public function show(Topic $topic)
     {
-        return view('topic.show');
+        return view('topic.show', ['threads'=> $topic->threads()->get(), 'topic' => $topic]);
     }
 
     /**

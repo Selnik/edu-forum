@@ -55,7 +55,7 @@ class ThreadController extends Controller
         $thread->topic()->associate($topic);
         //$thread->topic()->associate($topic);
         $thread->save();
-        return redirect()->to('/');
+        return redirect()->to(route('topic.show', $topic));
     }
 
     /**
