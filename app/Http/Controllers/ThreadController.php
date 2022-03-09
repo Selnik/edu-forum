@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Thread;
+use App\Models\Topic;
 use Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -38,17 +39,20 @@ class ThreadController extends Controller
      */
     public function store(Request $request) : RedirectResponse
     {
-        $user = Auth::user();
         $this->validate($request, [
-            'name' => ['required', 'min:3', 'max:30', 'unique:topics'],
+            'name' => ['required', 'min:3', 'max:30', 'unique:threads'],
             'text' => ['required', 'min:5', 'max:255'],
 
+
         ]);
+        $user = Auth::user();
+        $topic= Topic::find($request->input('topic'));
         $thread = new Thread();
         $thread->name = $request->input('name');
         $thread->text = $request->input('text');
         $thread->slug = Str::slug($request->input('name'));
         $thread->user()->associate($user);
+        $thread->topic()->associate($topic);
         //$thread->topic()->associate($topic);
         $thread->save();
         return redirect()->to('/');

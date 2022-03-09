@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Topic;
 
 class CreateThreadsTable extends Migration
 {
@@ -17,6 +18,7 @@ class CreateThreadsTable extends Migration
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Topic::class);
             $table->string('name')->unique();
             $table->text('text');
             $table->string('slug')->unique();
