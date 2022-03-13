@@ -53,7 +53,6 @@ class ThreadController extends Controller
         $thread->slug = Str::slug($request->input('name'));
         $thread->user()->associate($user);
         $thread->topic()->associate($topic);
-        //$thread->topic()->associate($topic);
         $thread->save();
         return redirect()->to(route('topic.show', $topic));
     }
@@ -66,7 +65,8 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        //
+        return view('thread.show', ['replies'=> $thread->replies()->get(), 'thread' => $thread]);
+
     }
 
     /**

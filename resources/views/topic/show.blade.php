@@ -1,4 +1,7 @@
 <x-app-layout>
+    <h1>{{$topic->name}}</h1>
+    <p>{{$topic->description}}</p>
+    @if(Auth::check())
     <form action="{{ route('thread.store') }}" method="POST">
         @csrf
         <h1>Vytvořit vlákno</h1>
@@ -17,8 +20,9 @@
         <input type="hidden" value="{{$topic->id}}" name="topic" id="topic">
         <button type="submit">Vytvořit vlákno</button>
     </form>
+    @endif
 @forelse($threads as $thread)
-    <h1>{{$thread->name}}</h1>
+    <a href="{{route('thread.show', $thread)}}"><h1>{{$thread->name}}</h1></a>
     <p>{{$thread->text}}</p>
     @empty
         <h1>Žádná vlákna</h1>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reply;
+use App\Models\Thread;
+use Auth;
 use Illuminate\Http\Request;
+use Str;
 
 class ReplyController extends Controller
 {
@@ -35,7 +38,22 @@ class ReplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'min:3', 'max:30', 'unique:replies'],
+            'text' => ['required', 'min:5', 'max:255'],
+
+
+        ]);
+        $user = Auth::user();
+        $thread= Thread::find($request->input('thread'));
+        $reply = new Reply();
+        $reply->name = $request->input('name');
+        $reply->text = $request->input('text');
+        $reply->slug = Str::slug($request->input('name'));
+        $reply->user()->associate($user);
+        $reply->thread()->associate($thread);
+        $reply->save();
+        return redirect()->to(route('thread.show', $thread));
     }
 
     /**

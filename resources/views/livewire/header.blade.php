@@ -2,16 +2,6 @@
     <nav class="navbar navbar-light navbar-expand-md" style="border-radius: 0;box-shadow: inset 0px -1.3px 2px rgb(24,24,24);border-color: rgb(39,41,44);border-bottom: 1.2px inset rgb(0,0,0);">
         <div class="container-fluid"><a class="navbar-brand" href="{{route('home')}}"><strong>Edu</strong>Forum</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav">
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                </ul>
                 @if(!Auth::check())
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link active border-primary" href="{{route('register')}}">Registrovat</a></li>
@@ -30,6 +20,5 @@
                 </div>
             @endif
             </div>
-        </div>
     </nav>
 </div>
