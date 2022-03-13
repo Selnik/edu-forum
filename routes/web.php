@@ -25,4 +25,4 @@ Route::get('/', [TopicController::class, 'index'])->name('home');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('topic', TopicController::class);
 Route::resource('thread', ThreadController::class);
-Route::resource('reply', (ReplyController::class));
+Route::resource('reply', ReplyController::class);
