@@ -1,4 +1,5 @@
 <x-app-layout>
+    <livewire:homepage/>
 <h1>Vítej na Edu-fóru</h1>
 @if(Auth::check())
 <form action="{{ route('topic.store') }}" method="POST">
