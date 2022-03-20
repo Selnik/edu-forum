@@ -1,6 +1,5 @@
 <x-app-layout>
     <livewire:homepage/>
-<h1>Vítej na Edu-fóru</h1>
 @if(Auth::check())
 <form action="{{ route('topic.store') }}" method="POST">
     @csrf
@@ -21,12 +20,5 @@
 
 </form>
     @endif
-<ul>
-    @forelse($topics as $topic)
-        <a href="{{route('topic.show', $topic)}}"><li>{{$topic->name}}, {{$topic->description}}</li></a>
-    @empty
-        Prázdné
-    @endforelse
-</ul>
 </x-app-layout>
 

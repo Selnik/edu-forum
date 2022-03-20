@@ -5,22 +5,20 @@
             <h4 class="card-title">Témata</h4>
             <h6 class="text-muted card-subtitle mb-2">Seznam témat, ve kterých je možné vytvářet vlákna</h6>
             <p class="card-text">Témata mohou spravovat administrátoři. Jedno téma může být věnované například jednomu školnímu předmětu, nebo populární studentské aktivitě&nbsp;</p>
+            @forelse($topics as $topic)
             <div class="card" style="margin-top: 1em;">
-                <div class="card-header">
-                    <h5 class="mb-0">Jméno tématu</h5>
+                <a style="text-decoration: none" href="{{route('topic.show', $topic)}}">
+                    <div  class="card-header">
+                    <h5 class="mb-0">{{$topic->name}}</h5>
                 </div>
+                </a>
                 <div class="card-body">
-                    <p class="card-text" style="margin-bottom: 1em;">Popis tématu</p>
+                    <p class="card-text" style="margin-bottom: 1em;">{{$topic->description}}</p>
                 </div>
             </div>
-            <div class="card" style="margin-top: 1em;">
-                <div class="card-header">
-                    <h5 class="mb-0">Heading</h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text" style="margin-bottom: 1em;">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                </div>
-            </div>
+            @empty
+                <p>Nikdo zatím nevytvořil žádné téma</p>
+            @endforelse
         </div>
     </div>
 </div>

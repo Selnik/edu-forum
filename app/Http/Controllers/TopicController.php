@@ -42,7 +42,7 @@ return view('home', ['topics' =>Topic::orderBy('id', 'desc')->get(), 'threads' =
         //$user = Auth::user();
         $this->validate($request, [
             'name' => ['required', 'min:3', 'max:30', 'unique:topics'],
-            'description' => ['required', 'min:5', 'max:50'],
+            'description' => ['required', 'min:5', 'max:500'],
 
             ]);
         $topic = new Topic();
