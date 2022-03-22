@@ -13,10 +13,6 @@ class Topic extends Model
         'slug'
     ];
     use HasFactory;
-    public function subtopics()
-    {
-        return $this->hasMany(Subtopic::class);
-    }
     public function threads()
     {
         return$this->hasMany(Thread::class);
