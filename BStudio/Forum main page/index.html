@@ -44,20 +44,18 @@
             <h6 class="text-muted card-subtitle mb-2">Seznam témat, ve kterých je možné vytvářet vlákna</h6>
             <p class="card-text">Témata mohou spravovat administrátoři. Jedno téma může být věnované například jednomu školnímu předmětu, nebo populární studentské aktivitě&nbsp;</p>
             <div class="card" style="margin-top: 1em;">
-                <div class="card-header">
-                    <h5 class="mb-0">Jméno tématu</h5>
-                </div>
+                <div class="card-header d-flex"><a class="d-lg-flex justify-content-lg-start" href="#" style="width: 70%;" text-decoration="none;">
+                        <h5 class="d-lg-flex justify-content-lg-start mb-0" style="width: 100%;">Jméno tématu</h5>
+                    </a><a class="d-flex d-sm-flex d-md-flex d-lg-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end" href="#" style="width: 30%;">Upravit</a></div>
                 <div class="card-body">
                     <p class="card-text" style="margin-bottom: 1em;">Popis tématu</p>
                 </div>
             </div>
             <div class="card" style="margin-top: 1em;">
-                <div class="card-header">
-                    <h5 class="mb-0">Heading</h5>
+                <div class="card-header"><input class="border rounded border-primary shadow-sm" type="text" name="jmeno_tematu" placeholder="Jméno nového tématu" required="" minlength="1" maxlength="300" style="width: 80%;">
+                    <h5 class="mb-0"></h5>
                 </div>
-                <div class="card-body">
-                    <p class="card-text" style="margin-bottom: 1em;">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-                </div>
+                <div class="card-body"><textarea class="border rounded border-primary" style="width: 95%;" name="popis" placeholder="Popis nového tématu"></textarea><button class="btn btn-primary border rounded" type="submit" style="margin: auto;">Vytvořit nové téma</button></div>
             </div>
         </div>
     </div>
