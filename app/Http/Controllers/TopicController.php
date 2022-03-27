@@ -39,12 +39,12 @@ return view('home', ['topics' =>Topic::orderBy('id', 'desc')->get(), 'threads' =
      */
     public function store(Request $request) : RedirectResponse
     {
-        //$user = Auth::user();
         $this->validate($request, [
-            'name' => ['required', 'min:3', 'max:30', 'unique:topics'],
-            'description' => ['required', 'min:5', 'max:500'],
+            'name' => ['required', 'min:2', 'max:100', 'unique:topics'],
+            'description' => ['required', 'min:2', 'max:300'],
 
-            ]);
+
+        ]);
         $topic = new Topic();
         $topic->name = $request->input('name');
         $topic->description = $request->input('description');
@@ -85,7 +85,17 @@ return view('home', ['topics' =>Topic::orderBy('id', 'desc')->get(), 'threads' =
      */
     public function update(Request $request, Topic $topic)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'min:2', 'max:100'],
+            'description' => ['required', 'min:2', 'max:300'],
+
+
+        ]);
+        $topic->description = $request->input('description');
+        $topic->slug = Str::slug($request->input('name'));
+        $topic->name = $request->input('name');
+        $topic->save();
+        return redirect()->back();
     }
 
     /**
@@ -96,6 +106,8 @@ return view('home', ['topics' =>Topic::orderBy('id', 'desc')->get(), 'threads' =
      */
     public function destroy(Topic $topic)
     {
-        //
+        $topic->threads()->delete();
+        $topic->delete();
+        return redirect()->back();
     }
 }

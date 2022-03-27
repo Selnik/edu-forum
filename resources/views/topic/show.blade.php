@@ -1,30 +1,21 @@
 <x-app-layout>
-    <h1>{{$topic->name}}</h1>
-    <p>{{$topic->description}}</p>
-    @if(Auth::check())
-    <form action="{{ route('thread.store') }}" method="POST">
-        @csrf
-        <h1>Vytvořit vlákno</h1>
-        @if ($errors->any())
-            <div>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <input type="text" name="name" id="name" value="{{old('name')}}" placeholder="Jméno vlákna">
-        <input type="text" name="text" id="text" value="{{old('description')}}" placeholder="Popis vlákna">
-        <input type="hidden" value="{{$topic->id}}" name="topic" id="topic">
-        <button type="submit">Vytvořit vlákno</button>
-    </form>
-    @endif
+    <div class="mb-4 mx-3">
+        <p>
+    <a href="{{route('home')}}">Domů</a>-><a href="{{route('topic.show', $topic)}}">{{$topic->name}}</a>
+        </p>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{$topic->name}}</h4>
+            <h6 class="text-muted card-subtitle mb-2">{{$topic->description}}</h6>
 @forelse($threads as $thread)
-    <a href="{{route('thread.show', $thread)}}"><h1>{{$thread->name}}</h1></a>
-    <p>{{$thread->text}}</p>
+  <livewire:display-item :item="$thread"/>
     @empty
         <h1>Žádná vlákna</h1>
 @endforelse
+            @if(Auth::check())
+                <livewire:create-thread :topic="$topic"/>
+            @endif
+            </div>
+        </div>
 </x-app-layout>

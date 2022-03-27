@@ -20,8 +20,7 @@ class CreateRepliesTable extends Migration
             $table->string('name');
             $table->foreignIdFor(Thread::class);
             $table->foreignIdFor(User::class);
-            $table->text('text')->nullable();
-            $table->string('slug')->unique();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

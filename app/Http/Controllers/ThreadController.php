@@ -40,8 +40,8 @@ class ThreadController extends Controller
     public function store(Request $request) : RedirectResponse
     {
         $this->validate($request, [
-            'name' => ['required', 'min:3', 'max:30', 'unique:threads'],
-            'text' => ['required', 'min:5', 'max:255'],
+            'name' => ['required', 'min:2', 'max:100', 'unique:threads'],
+            'description' => ['required', 'min:2', 'max:300'],
 
 
         ]);
@@ -49,7 +49,7 @@ class ThreadController extends Controller
         $topic= Topic::find($request->input('topic'));
         $thread = new Thread();
         $thread->name = $request->input('name');
-        $thread->text = $request->input('text');
+        $thread->description = $request->input('description');
         $thread->slug = Str::slug($request->input('name'));
         $thread->user()->associate($user);
         $thread->topic()->associate($topic);
@@ -65,7 +65,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        return view('thread.show', ['replies'=> $thread->replies()->get(), 'thread' => $thread]);
+        return view('thread.show', ['replies'=> $thread->replies()->get(), 'thread' => $thread, 'topic' => $thread->topic()->get()->first()] );
 
     }
 
@@ -89,7 +89,17 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'min:2', 'max:100'],
+            'description' => ['required', 'min:2', 'max:300'],
+
+
+        ]);
+        $thread->description = $request->input('description');
+        $thread->slug = Str::slug($request->input('name'));
+        $thread->name = $request->input('name');
+        $thread->save();
+        return redirect()->back();
     }
 
     /**
@@ -100,6 +110,8 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread)
     {
-        //
+        $thread->replies()->delete();
+        $thread->delete();
+        return redirect()->back();
     }
 }

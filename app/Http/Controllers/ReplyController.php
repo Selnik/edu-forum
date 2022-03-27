@@ -39,8 +39,8 @@ class ReplyController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => ['required', 'min:3', 'max:30', 'unique:replies'],
-            'text' => ['required', 'min:5', 'max:255'],
+            'name' => ['required', 'min:2', 'max:100', 'unique:replies'],
+            'description' => ['required', 'min:2', 'max:300'],
 
 
         ]);
@@ -48,12 +48,11 @@ class ReplyController extends Controller
         $thread= Thread::find($request->input('thread'));
         $reply = new Reply();
         $reply->name = $request->input('name');
-        $reply->text = $request->input('text');
-        $reply->slug = Str::slug($request->input('name'));
+        $reply->description = $request->input('description');
         $reply->user()->associate($user);
         $reply->thread()->associate($thread);
         $reply->save();
-        return redirect()->to(route('thread.show', $thread));
+        return redirect()->back();
     }
 
     /**
@@ -64,7 +63,7 @@ class ReplyController extends Controller
      */
     public function show(Reply $reply)
     {
-        //
+        return redirect()->back();
     }
 
     /**
@@ -87,7 +86,16 @@ class ReplyController extends Controller
      */
     public function update(Request $request, Reply $reply)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'min:2', 'max:100'],
+            'description' => ['required', 'min:2', 'max:300'],
+
+
+        ]);
+        $reply->description = $request->input('description');
+        $reply->name = $request->input('name');
+        $reply->save();
+        return redirect()->back();
     }
 
     /**
@@ -98,6 +106,7 @@ class ReplyController extends Controller
      */
     public function destroy(Reply $reply)
     {
-        //
+        $reply->delete();
+        return redirect()->back();
     }
 }

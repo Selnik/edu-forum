@@ -21,7 +21,7 @@ class CreateThreadsTable extends Migration
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Topic::class);
             $table->string('name')->unique();
-            $table->text('text');
+            $table->text('description');
             $table->string('slug')->unique();
             $table->timestamps();
         });
