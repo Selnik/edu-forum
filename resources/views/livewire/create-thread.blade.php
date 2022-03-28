@@ -12,12 +12,14 @@
             </div>
         @endif
         <div class="card-header">
-            <p></p>
-            <input class="border rounded border-primary shadow-sm" type="text" name="name" placeholder="Jméno nového vlákna" required="" minlength="1" maxlength="300" style="width: 80%;">
+            <h4>Vytvořit vlákno</h4>
+            <p class="text-muted m-0">{{$problemsName}}</p>
+            <p class="text-muted m-0">{{$problemsDescription}}</p>
+            <input class="border rounded border-primary shadow-sm" type="text" name="name" wire:model="name" wire:keydown="check" wire:keyup="check" wire:change="check" placeholder="Jméno nového vlákna" required="" minlength="2" maxlength="100" style="width: 80%;">
         </div>
         <div class="card-body">
-            <textarea class="border rounded border-primary" style="width: 95%;" name="description" placeholder="Popis nového vlákna"></textarea>
+            <textarea class="border rounded border-primary" style="width: 95%;" name="description" wire:model="description" wire:keydown="check" wire:keyup="check" wire:change="check" placeholder="Popis nového tématu" required="" minlength="2" maxlength="300" ></textarea>
             <input type="hidden" value="{{$topic->id}}" name="topic" id="topic">
-            <button class="btn btn-primary border rounded" type="submit" style="margin: auto;">Vytvořit nové vlákno</button></div>
+            <button class="btn btn-primary border rounded  @if($problemsName != '' or $problemsDescription != '') disabled @endif" type="submit" style="margin: auto;">Vytvořit nové vlákno</button></div>
     </form>
 </div>

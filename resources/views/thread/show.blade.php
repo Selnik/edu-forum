@@ -8,6 +8,8 @@
         <div class="card-body">
             <h4 class="card-title">{{$thread->name}}</h4>
             <h6 class="text-muted card-subtitle mb-2">{{$thread->description}}</h6>
+            <hr />
+            <p class="text-muted">Vytvořeno uživatelem {{$thread->user()->first()->name}}</p>
             @forelse($replies as $reply)
                 <livewire:display-item :item="$reply"/>
             @empty
