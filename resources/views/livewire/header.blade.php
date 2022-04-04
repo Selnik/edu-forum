@@ -11,11 +11,13 @@
             </div>
             @if(Auth::check())
                 <div class="dropdown"><a class="dropdown-toggle fw-bold" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="text-decoration: none;color: rgb(0,0,0);">{{$user->name}}</a>
-                    <div class="dropdown-menu text-center" style="padding-right: 1em;"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a>
+                    <div class="dropdown-menu text-center" style="padding-right: 1em;">
+                        <div class="dropdown-item">
                         <form action="{{route('logout')}}" method="POST">
                             @csrf
-                        <div class="dropdown-divider"></div><button class="btn" data-bss-hover-animate="pulse" type="submit">Odhlásit se</button>
+                            <button class="btn" data-bss-hover-animate="pulse" type="submit">Odhlásit se</button>
                         </form>
+                        </div>
                     </div>
                 </div>
             @endif
